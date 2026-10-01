@@ -1,0 +1,2 @@
+import {ResponsiveContainer,LineChart,Line,XAxis,YAxis,Tooltip,CartesianGrid} from 'recharts';
+export default function ChartCard({title,data,dataKey}){return <div className="card chart"><h3>{title}</h3>{!data.length?<div className="empty">No sensor history yet.</div>:<ResponsiveContainer width="100%" height={240}><LineChart data={data}><CartesianGrid strokeDasharray="3 3"/><XAxis dataKey="time"/><YAxis/><Tooltip/><Line type="monotone" dataKey={dataKey} strokeWidth={2} dot={false}/></LineChart></ResponsiveContainer>}</div>}

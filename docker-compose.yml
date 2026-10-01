@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: plantcare
+      POSTGRES_USER: plantcare
+      POSTGRES_PASSWORD: plantcare_dev_password
+    ports: ["5432:5432"]
+    volumes: ["plantcare_pg:/var/lib/postgresql/data"]
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://plantcare:plantcare_dev_password@db:5432/plantcare
+      JWT_SECRET: local-docker-secret-change-me
+      SIMULATOR_API_KEY: local-simulator-key
+      CORS_ORIGINS: http://localhost:5173
+      OFFLINE_AFTER_SECONDS: 30
+    ports: ["8000:8000"]
+    depends_on: [db]
+volumes:
+  plantcare_pg:

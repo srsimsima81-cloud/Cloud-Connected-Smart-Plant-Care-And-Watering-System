@@ -1,0 +1,1 @@
+export default function MetricCard({label,value,unit,status}){return <div className="card metric"><div className="muted">{label}</div><div className="metricValue">{value ?? '—'}<span>{unit}</span></div>{status&&<div className="small">{status}</div>}</div>}
